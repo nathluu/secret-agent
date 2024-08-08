@@ -378,6 +378,8 @@ func (kp *CertKeyPair) ToKubernetes(secObject *corev1.Secret) {
 	secObject.Data[publicPemKey] = kp.Cert.CertPEM
 	secObject.Data[privatePemKey] = kp.Cert.PrivateKeyPEM
 	secObject.Data[combinedPemKey] = append(kp.Cert.CertPEM, kp.Cert.PrivateKeyPEM...)
+	secObject.Data["tls.crt"] = kp.Cert.CertPEM
+	secObject.Data["tls.key"] = kp.Cert.PrivateKeyPEM
 	return
 }
 
