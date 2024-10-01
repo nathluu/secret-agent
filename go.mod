@@ -1,8 +1,6 @@
 module github.com/ForgeRock/secret-agent
 
-go 1.22.0
-
-toolchain go1.22.2
+go 1.22.7
 
 require (
 	cloud.google.com/go/secretmanager v1.13.0
