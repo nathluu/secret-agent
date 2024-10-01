@@ -64,7 +64,7 @@ RUN CGO_ENABLED=0 GOOS=linux GOARCH=$TARGETARCH GO111MODULE=on go build -ldflags
 FROM openjdk:23-ea-15-jdk-slim-bullseye as release
 
 RUN apt-get update && \
-    DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y lsof net-tools && apt-get upgrade -y \
+    DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y lsof net-tools && apt-get upgrade -y && \
     apt-get clean all
 RUN addgroup --gid 11111 secret-agent && \
     adduser --shell /bin/bash --home /home/secret-agent --uid 11111 --disabled-password --ingroup root --gecos secret-agent secret-agent && \
