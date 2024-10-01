@@ -2,8 +2,6 @@ module github.com/ForgeRock/secret-agent
 
 go 1.22.7
 
-toolchain go1.22.7
-
 require (
 	cloud.google.com/go/secretmanager v1.13.0
 	github.com/Azure/azure-sdk-for-go v68.0.0+incompatible
