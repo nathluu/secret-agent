@@ -86,7 +86,7 @@ func configureUsage(certTemplate *x509.Certificate) {
 
 	}
 	// default configuration of usage
-	certTemplate.KeyUsage = x509.KeyUsageDigitalSignature | x509.KeyUsageKeyEncipherment
+	// certTemplate.KeyUsage = x509.KeyUsageDigitalSignature | x509.KeyUsageKeyEncipherment
 	certTemplate.ExtKeyUsage = []x509.ExtKeyUsage{x509.ExtKeyUsageClientAuth, x509.ExtKeyUsageServerAuth}
 
 }
@@ -378,6 +378,8 @@ func (kp *CertKeyPair) ToKubernetes(secObject *corev1.Secret) {
 	secObject.Data[publicPemKey] = kp.Cert.CertPEM
 	secObject.Data[privatePemKey] = kp.Cert.PrivateKeyPEM
 	secObject.Data[combinedPemKey] = append(kp.Cert.CertPEM, kp.Cert.PrivateKeyPEM...)
+	secObject.Data["tls.crt"] = kp.Cert.CertPEM
+	secObject.Data["tls.key"] = kp.Cert.PrivateKeyPEM
 	return
 }
 
